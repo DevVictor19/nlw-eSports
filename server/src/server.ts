@@ -2,18 +2,24 @@ import express from "express";
 
 const app = express();
 
-// request -> info sobre a requisição
-// response -> info sobre a resposta da requisição
+app.get("/games", (resquest, response) => {
+  return response.json([]);
+});
 
-app.get("/ads", (request, response) => {
-  return response.json([
-    { id: 1, name: "Anúncio 1" },
-    { id: 2, name: "Anúncio 2" },
-    { id: 3, name: "Anúncio 3" },
-    { id: 4, name: "Anúncio 4" },
-    { id: 5, name: "Anúncio 5" },
-    { id: 6, name: "Anúncio 6" },
-  ]);
+app.post("/ads", (request, response) => {
+  return response.status(201).json([]);
+});
+
+app.get("/games/:id/ads", (request, response) => {
+  const gameId = request.params.id;
+
+  return response.send(gameId);
+});
+
+app.get("/ads/:id/discord", (request, response) => {
+  const addId = request.params.id;
+
+  return response.send(addId);
 });
 
 app.listen(3333);
